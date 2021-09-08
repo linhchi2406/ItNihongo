@@ -8,17 +8,18 @@ function App() {
 
   const onClickPrev = () =>{
     if(count <= 0){
-      setCount(count, 0);
+      setCount( 0);
      }else{
-       setCount(count, count--);
+       setCount(count--);
      }
   };
-  const onClickNext = async () =>{
+  const onClickNext = () =>{
     if(count >= 3){
-      setCount(count, 3);
+      setCount(3);
      }else{
-       setCount(count, count++);
+       setCount(count++);
      }
+     console.log(count);
   };
   
   let element = items.map((item)=>
