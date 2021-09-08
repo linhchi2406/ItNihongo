@@ -1,29 +1,42 @@
+import logo from './logo.svg';
 import './App.css';
-import _ from 'lodash';
-import React from 'react';
-import {reactLocalStorage} from 'reactjs-localstorage';
-import { v4 as uuidv4 } from 'uuid';
-import Table from './components/Table';
+import React, { useState } from 'react';
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      items : [],
-   };
-  }
-render(){
+function App() {
+  const [items, setItem] = useState(['Huyen', 'Hoa', 'Hung', 'Long']);
+  const [count, setCount] = useState(0);
+
+  const onClickPrev = () =>{
+    if(count <= 0){
+      setCount(count, 0);
+     }else{
+       setCount(count, count--);
+     }
+  };
+  const onClickNext = async () =>{
+    if(count >= 3){
+      setCount(count, 3);
+     }else{
+       setCount(count, count++);
+     }
+  };
+  
+  let element = items.map((item)=>
+  {
+    return <span>{item} ,</span>
+  } );
+  
   return (
     <div className="container-fluid row d-flex justify-content-between">
-      <header>Linhchi</header>
+      <div>学生一層: [ {element}]</div>
       <div className="col-8">
-        <Table/>
+        <p>位置：{count + 1}</p>
+        <p>名前：{items[count]}</p>
       </div>
-
+      <button type="button" onClick={()=>onClickPrev} className="btn btn-danger">前に</button>
+      <button type="button" onClick={()=>onClickNext} className="btn btn-primary">次に</button>
     </div>
-    
   );
-}
 }
 
 export default App;
